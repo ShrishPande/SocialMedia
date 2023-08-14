@@ -19,7 +19,7 @@
   "type":"module",
   "devDependencies": {},
   "scripts": {
-    "start":"nodemon index.js"
+    "start":"node index.js"
   },
   "keywords": [],
   "author": "",
