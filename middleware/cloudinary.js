@@ -12,6 +12,7 @@ const storage = new CloudinaryStorage({
     cloudinary,
     allowedFormats: ['jpg','png'],
     params:(req,file)=>{
+        console.log(req.body.picturePath)
         return {
             folder: 'newSocial',
             transformations:[{width:500,height:500,crop:"limit"}],
