@@ -13,6 +13,7 @@ import postRoutes from "./Routes/posts.js"
 import { register } from "./controllers/auth.js"
 import {createPost} from "./controllers/posts.js"
 import { verifyToken } from './middleware/auth.js'
+import storage from './middleware/cloudinary.js'
 
 
 const __filename = fileURLToPath(import.meta.url)
@@ -27,16 +28,6 @@ app.use(express.json({limit:"30mb",extended:true}))
 app.use(express.urlencoded({limit:"30mb",extended:true}))
 app.use(cors())
 app.use('/assets',express.static(path.join(__dirname,'public/assets')))
-
-
-const storage= multer.diskStorage({
-    destination: function (req,file,cb){
-        cb(null,"public/assets");
-    },
-    filename:function(req,file,cb){
-        cb(null,file.originalname)
-    }
-})
 
 const upload = multer({storage})
 
@@ -56,8 +47,5 @@ mongoose.connect(process.env.MONGO_URL,{
     useUnifiedTopology:true,
 }).then(()=>{
     app.listen(PORT,() =>console.log(`Server Port : ${PORT}`))
-
-
-
 
 }).catch((error)=>console.log(`${error} did not connect`))
