@@ -11,14 +11,14 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
     cloudinary,
     allowedFormats: ['jpg','png'],
-    params:(req,file)=>{
-        console.log(req.body.picturePath)
-        return {
+    params:
+        {
             folder: 'newSocial',
             transformations:[{width:500,height:500,crop:"limit"}],
-            public_id:req.body.picturePath
+            public_id:(req,file)=>req.body.picturePath
         }
     }
+    
 })
 
 export default storage
