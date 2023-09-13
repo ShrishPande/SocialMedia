@@ -17,7 +17,7 @@ const storage = new CloudinaryStorage({
             transformations:[{width:500,height:500,crop:"limit"}],
             public_id:(req,file)=>req.body.picturePath
         }
-    }
+    
     
 })
 
